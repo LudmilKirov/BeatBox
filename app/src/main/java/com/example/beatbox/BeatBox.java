@@ -35,19 +35,19 @@ public class BeatBox {
                 .setUsage(AudioAttributes.USAGE_MEDIA)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                 .build();
-        mSoundPool=new SoundPool.Builder()
+        mSoundPool = new SoundPool.Builder()
                 .setAudioAttributes(audioAttributes)
                 .setMaxStreams(MAX_SOUNDS)
                 .build();
         loadSounds();
     }
 
-    public void play(Sound sound){
+    public void play(Sound sound) {
         Integer soundId = sound.getSoundId();
-        if(soundId == null){
+        if (soundId == null) {
             return;
         }
-        mSoundPool.play(soundId,1.0f,1.0f,1,0,1.0f);
+        mSoundPool.play(soundId, 1.0f, 1.0f, 1, 0, 1.0f);
     }
 
     private void loadSounds() {
@@ -66,8 +66,8 @@ public class BeatBox {
                 Sound sound = new Sound(assetPath);
                 load(sound);
                 mSounds.add(sound);
-            }catch (IOException ioe){
-                Log.e(TAG,"Could not load sound"+filename,ioe);
+            } catch (IOException ioe) {
+                Log.e(TAG, "Could not load sound" + filename, ioe);
             }
         }
     }
@@ -76,13 +76,13 @@ public class BeatBox {
         return mSounds;
     }
 
-    private void load(Sound sound) throws IOException{
-        AssetFileDescriptor afd= mAsset.openFd(sound.getAssetPath());
-        int soundId=mSoundPool.load(afd,1);
+    private void load(Sound sound) throws IOException {
+        AssetFileDescriptor afd = mAsset.openFd(sound.getAssetPath());
+        int soundId = mSoundPool.load(afd, 1);
         sound.setSoundId(soundId);
     }
 
-    public void release(){
+    public void release() {
         mSoundPool.release();
     }
 }

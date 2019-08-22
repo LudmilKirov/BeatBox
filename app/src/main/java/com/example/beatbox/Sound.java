@@ -13,9 +13,9 @@ public class Sound {
     // replace to remove the file extension
     public Sound(String assetPath) {
         mAssetPath = assetPath;
-        String[] components=assetPath.split("/");
-        String filename=components[components.length-1];
-        mName=filename.replace(".wav","");
+        String[] components = assetPath.split("/");
+        String filename = components[components.length - 1];
+        mName = filename.replace(".wav", "");
     }
 
     public String getAssetPath() {
@@ -33,5 +33,4 @@ public class Sound {
     public void setSoundId(Integer soundId) {
         mSoundId = soundId;
     }
-
 }
